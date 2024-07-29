@@ -9,15 +9,15 @@ import apiClient from './lib/api-client'
 import { GET_USER_INFO } from './utils/constants'
 
 
-const PrivateRoute = ({ Children }) => {
+const PrivateRoute = ({ children }) => {
   const { userInfo } = useAppStore()
   const isAuthencticated = !!userInfo
-  return isAuthencticated ? Children : <Navigate to={"/auth"} />
+  return isAuthencticated ? children : <Navigate to="/auth" />
 }
-const AuthRoute = ({ Children }) => {
+const AuthRoute = ({ children }) => {
   const { userInfo } = useAppStore()
-  const isAuthencticated = !userInfo
-  return isAuthencticated ? <Navigate to={"/chat"} /> : Children
+  const isAuthencticated = !!userInfo
+  return isAuthencticated ? <Navigate to="/chat" /> : children
 }
 
 function App() {
